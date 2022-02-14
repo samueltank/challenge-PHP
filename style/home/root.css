@@ -1,0 +1,9 @@
+:root {
+  --var-background-color: #f4f4f4;
+  --var-hamb-bar: #ffffff;
+  --var-blue: dodgerblue;
+  --var-blue-hover: rgb(25, 117, 209);
+  --var-blue-shadow-text: rgba(0, 140, 255, 0.5);
+  --var-background-menu: #ffffff;
+  --var-background-menu-item: #ffffff;
+}

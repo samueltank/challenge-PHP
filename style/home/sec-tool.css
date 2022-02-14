@@ -1,0 +1,49 @@
+section.sec-tool {
+  width: 80%;
+  min-height: 75vh;
+  padding: 2rem;
+  background-color: rgba(196, 196, 196, 0.507);
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(128, 128, 128, 0.308);
+  transition: all 0.4s ease-out;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.5rem;
+}
+section.sec-tool:hover {
+  box-shadow: none;
+  transform: scale(1.02);
+}
+section.sec-tool .container-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: var(--var-blue);
+  height: 10vh;
+  width: 15vw;
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+}
+section.sec-tool .container-menu:hover {
+  background-color: var(--var-blue-hover);
+}
+section.sec-tool .container-menu:active {
+  transform: scale(0.98);
+}
+section.sec-tool > .tool-display {
+  background-color: var(--var-background-color);
+  height: 70vh;
+  width: 60vw;
+}
+ 
+section.sec-tool > .container-list-menu {
+  width: 20vw;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
