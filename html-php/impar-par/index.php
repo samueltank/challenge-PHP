@@ -1,5 +1,5 @@
 <?php
-  require_once("../../php/media/calc-media.php");
+  /* require_once("./php/impar-par/calc-impar-par.php"); */
 ?>
 
 <!DOCTYPE html>
@@ -38,10 +38,10 @@
     <link rel="stylesheet" href="../../style/home/main.css" />
     <link rel="stylesheet" href="../../style/home/sec-tool.css" />
     <link rel="stylesheet" href="../../style/home/footer.css" />
-    <link rel="stylesheet" href="../../style/media/sec-display.css" />
-    <link rel="stylesheet" href="../../style/media/header.css" />
-    <link rel="stylesheet" href="../../style/media/form-media.css" />
-    <link rel="stylesheet" href="../../style/media/output.css" />
+    <link rel="stylesheet" href="../../style/impar-par/sec-display.css" />
+    <link rel="stylesheet" href="../../style/impar-par/header.css" />
+    <link rel="stylesheet" href="../../style/impar-par/form-table.css" />
+    <link rel="stylesheet" href="../../style/impar-par/output.css" />
   </head>
   <body>
     <!-- Header do documento(página) -->
@@ -65,7 +65,7 @@
             <ul class="list-opc">
               <li><a href="../../index.htm">Home</a></li>
               <li><a href="#">Calculadora</a></li>
-              <li><a href="./index.php">Média</a></li>
+              <li><a href="../media/index.php">Média</a></li>
               <li><a href="../tabuada/index.php">Tabuada</a></li>
               <li><a href="#">Par/Ímpar</a></li>
             </ul>
@@ -76,7 +76,7 @@
         <div class="tool-display">
           <section class="sec-display">
             <header class="sec-display-header">
-              <h2>Cálculo de Média Simples</h2>
+              <h2>Quais números são pares e quais são ímpares?</h2>
             </header>
 
             <div class="form-media">
@@ -85,68 +85,36 @@
                 enctype="multipart/form-data"
                 id="form-media"
               >
-                <fieldset id="fieldset-nota-1">
-                  <legend>Nota 1</legend>
-                  <label for="grade1"></label>
+                <fieldset id="initial-num-field">
+                  <legend>Nº inicial</legend>
+                  <label for="initial-num"></label>
                   <input
                     type="number"
-                    name="grade1"
-                    id="grade1"
+                    name="initial-num"
+                    id="initial-num"
                     required="required"
-                    placeholder="Insira a nota 1"
+                    placeholder="Insira a número inicial"
                     min="0"
-                    max="10"
-                    step="0.1"
-                    title="Insira um valor entre 0 e 10(inclusos)"
-                    value="<?php echo($array_grades[0]);?>"
+                    max="1000"
+                    step="1"
+                    title="Insira um valor entre 0 e 1000(inclusos)"
+                    value="<?php echo('');?>"
                   />
                 </fieldset>
-                <fieldset id="fieldset-nota-2">
-                  <legend>Nota 2</legend>
-                  <label for="grade2"></label>
+                <fieldset id="final-num-field">
+                  <legend>Nº Final</legend>
+                  <label for="final-num"></label>
                   <input
                     type="number"
-                    name="grade2"
-                    id="grade2"
+                    name="final-num"
+                    id="final-num"
                     required="required"
-                    placeholder="Insira a nota 2"
-                    min="0"
-                    max="10"
-                    step="0.1"
-                    title="Insira um valor entre 0 e 10(inclusos)"
-                    value="<?php echo($array_grades[1]);?>"
-                  />
-                </fieldset>
-                <fieldset id="fieldset-nota-3">
-                  <legend>Nota 3</legend>
-                  <label for="grade3"></label>
-                  <input
-                    type="number"
-                    name="grade3"
-                    id="grade3"
-                    required="required"
-                    placeholder="Insira a nota 3"
-                    min="0"
-                    max="10"
-                    step="0.1"
-                    title="Insira um valor entre 0 e 10(inclusos)"
-                    value="<?php echo($array_grades[2]);?>"
-                  />
-                </fieldset>
-                <fieldset id="fieldset-nota-4">
-                  <legend>Nota 4</legend>
-                  <label for="grade4"></label>
-                  <input
-                    type="number"
-                    name="grade4"
-                    id="grade4"
-                    required="required"
-                    placeholder="Insira a nota 4"
-                    min="0"
-                    max="10"
-                    step="0.1"
-                    title="Insira um valor entre 0 e 10(inclusos)"
-                    value="<?php echo($array_grades[3]);?>"
+                    placeholder="Insira o número final"
+                    min=""
+                    max="1000"
+                    step="1"
+                    title="Insira um valor entre 1 e 1000(inclusos)"
+                    value="<?php echo('');?>"
                   />
                 </fieldset>
 
@@ -154,27 +122,26 @@
                   <input 
                     type="submit" 
                     value="Resetar" 
-                    formaction="../../html-php/media/index.php"
-                    formnovalidate="formnovalidate"
-                    />
-                  <input type="submit" value="Calcular" formmethod="post" />
+                    formaction="./index.php"
+                    formnovalidate="formnovalidate" 
+                  />
+                  <input type="submit" value="Gerar" formmethod="post" />
                 </div>
               </form>
             </div>
 
             <div class="output-display">
-              <fieldset>
+              <fieldset id="field-result">
                 <legend>Resultado</legend>
                 <label for="result"></label>
-                <input
-                  type="number"
-                  name="result"
-                  id="result"
-                  placeholder=""
-                  readonly="readonly"
-                  value="<?php echo($result);?>"
-                  title="O resultado sairá aqui!"
-                />
+                  <fieldset id="field-odd">
+                    <legend>Ímpares</legend>
+                    <div class="odd-ones"></div>
+                  </fieldset>
+                  <fieldset id="field-pairs">
+                    <legend>Pares</legend>
+                    <div class="pairs"></div>
+                  </fieldset>
               </fieldset>
             </div>
           </section>

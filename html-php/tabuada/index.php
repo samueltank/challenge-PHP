@@ -40,7 +40,7 @@
     <link rel="stylesheet" href="../../style/home/footer.css" />
     <link rel="stylesheet" href="../../style/tabuada/sec-display.css" />
     <link rel="stylesheet" href="../../style/tabuada/header.css" />
-    <link rel="stylesheet" href="../../style/tabuada/form-media.css" />
+    <link rel="stylesheet" href="../../style/tabuada/form-table.css" />
     <link rel="stylesheet" href="../../style/tabuada/output.css" />
   </head>
   <body>
@@ -85,36 +85,36 @@
                 enctype="multipart/form-data"
                 id="form-media"
               >
-                <fieldset id="fieldset-nota-1">
-                  <legend>Multiplicando</legend>
-                  <label for="fator1"></label>
+                <fieldset id="table-field">
+                  <legend>Tabuada</legend>
+                  <label for="table"></label>
                   <input
                     type="number"
-                    name="factor1"
-                    id="factor1"
+                    name="table"
+                    id="table"
                     required="required"
-                    placeholder="Insira o Multiplicando"
+                    placeholder="Insira a Tabuada"
                     min="1"
                     max="1000"
                     step="1"
                     title="Insira um valor entre 1 e 1000(inclusos)"
-                    value="<?php echo("");?>"
+                    value="<?php echo($table);?>"
                   />
                 </fieldset>
-                <fieldset id="fieldset-nota-2">
-                  <legend>Multiplicador</legend>
-                  <label for="factor2"></label>
+                <fieldset id="counter-field">
+                  <legend>Contador</legend>
+                  <label for="counter"></label>
                   <input
                     type="number"
-                    name="factor2"
-                    id="factor2"
+                    name="counter"
+                    id="counter"
                     required="required"
-                    placeholder="Insira o Multiplicador"
+                    placeholder="Insira o Contador"
                     min="1"
                     max="1000"
                     step="1"
                     title="Insira um valor entre 1 e 1000(inclusos)"
-                    value="<?php echo("");?>"
+                    value="<?php echo($counter);?>"
                   />
                 </fieldset>
 
@@ -122,20 +122,22 @@
                   <input 
                     type="submit" 
                     value="Resetar" 
-                    formaction="" />
+                    formaction="./index.php"
+                    formnovalidate="formnovalidate" 
+                  />
                   <input type="submit" value="Gerar" formmethod="post" />
                 </div>
               </form>
             </div>
 
             <div class="output-display">
-              <fieldset>
+              <fieldset id="field-result">
                 <legend>Resultado</legend>
                 <label for="result"></label>
                 <div class="mult-table">
                   <?php 
-                  # Método para impressão da tabuada:
-                    
+                    # Método para impressão da tabuada:
+                    generateTable($table, $counter);
                   ?>
                 </div>
               </fieldset>
@@ -146,7 +148,7 @@
     </main>
     <!-- Footer do documento -->
     <footer class="doc-footer">
-      <p><address>&copy;Sam Tank</address> | 2022</p>
+      <p><address>&copy;Sam Tank</address></p>
     </footer>
     <script src="../../menu-animation.js" defer="defer"></script>
   </body>
