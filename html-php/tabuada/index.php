@@ -1,5 +1,5 @@
 <?php
-  require_once("../../php/media/calc-media.php");
+  require_once("../../php/tabuada/calc-tabuada.php");
 ?>
 
 <!DOCTYPE html>
@@ -38,10 +38,10 @@
     <link rel="stylesheet" href="../../style/home/main.css" />
     <link rel="stylesheet" href="../../style/home/sec-tool.css" />
     <link rel="stylesheet" href="../../style/home/footer.css" />
-    <link rel="stylesheet" href="../../style/media/sec-display.css" />
-    <link rel="stylesheet" href="../../style/media/header.css" />
-    <link rel="stylesheet" href="../../style/media/form-media.css" />
-    <link rel="stylesheet" href="../../style/media/output.css" />
+    <link rel="stylesheet" href="../../style/tabuada/sec-display.css" />
+    <link rel="stylesheet" href="../../style/tabuada/header.css" />
+    <link rel="stylesheet" href="../../style/tabuada/form-media.css" />
+    <link rel="stylesheet" href="../../style/tabuada/output.css" />
   </head>
   <body>
     <!-- Header do documento(página) -->
@@ -65,8 +65,8 @@
             <ul class="list-opc">
               <li><a href="../../index.htm">Home</a></li>
               <li><a href="#">Calculadora</a></li>
-              <li><a href="./index.php">Média</a></li>
-              <li><a href="#">Tabuada</a></li>
+              <li><a href="../media/index.php">Média</a></li>
+              <li><a href="./index.php">Tabuada</a></li>
               <li><a href="#">Par/Ímpar</a></li>
             </ul>
           </div>
@@ -76,7 +76,7 @@
         <div class="tool-display">
           <section class="sec-display">
             <header class="sec-display-header">
-              <h2>Cálculo de Média Simples</h2>
+              <h2>Gerador de Tabuada</h2>
             </header>
 
             <div class="form-media">
@@ -86,67 +86,35 @@
                 id="form-media"
               >
                 <fieldset id="fieldset-nota-1">
-                  <legend>Nota 1</legend>
-                  <label for="grade1"></label>
+                  <legend>Multiplicando</legend>
+                  <label for="fator1"></label>
                   <input
                     type="number"
-                    name="grade1"
-                    id="grade1"
+                    name="factor1"
+                    id="factor1"
                     required="required"
-                    placeholder="Insira a nota 1"
-                    min="0"
-                    max="10"
-                    step="0.1"
-                    title="Insira um valor entre 0 e 10(inclusos)"
-                    value="<?php echo($array_grades[0]);?>"
+                    placeholder="Insira o Multiplicando"
+                    min="1"
+                    max="1000"
+                    step="1"
+                    title="Insira um valor entre 1 e 1000(inclusos)"
+                    value="<?php echo("");?>"
                   />
                 </fieldset>
                 <fieldset id="fieldset-nota-2">
-                  <legend>Nota 2</legend>
-                  <label for="grade2"></label>
+                  <legend>Multiplicador</legend>
+                  <label for="factor2"></label>
                   <input
                     type="number"
-                    name="grade2"
-                    id="grade2"
+                    name="factor2"
+                    id="factor2"
                     required="required"
-                    placeholder="Insira a nota 2"
-                    min="0"
-                    max="10"
-                    step="0.1"
-                    title="Insira um valor entre 0 e 10(inclusos)"
-                    value="<?php echo($array_grades[1]);?>"
-                  />
-                </fieldset>
-                <fieldset id="fieldset-nota-3">
-                  <legend>Nota 3</legend>
-                  <label for="grade3"></label>
-                  <input
-                    type="number"
-                    name="grade3"
-                    id="grade3"
-                    required="required"
-                    placeholder="Insira a nota 3"
-                    min="0"
-                    max="10"
-                    step="0.1"
-                    title="Insira um valor entre 0 e 10(inclusos)"
-                    value="<?php echo($array_grades[2]);?>"
-                  />
-                </fieldset>
-                <fieldset id="fieldset-nota-4">
-                  <legend>Nota 4</legend>
-                  <label for="grade4"></label>
-                  <input
-                    type="number"
-                    name="grade4"
-                    id="grade4"
-                    required="required"
-                    placeholder="Insira a nota 4"
-                    min="0"
-                    max="10"
-                    step="0.1"
-                    title="Insira um valor entre 0 e 10(inclusos)"
-                    value="<?php echo($array_grades[3]);?>"
+                    placeholder="Insira o Multiplicador"
+                    min="1"
+                    max="1000"
+                    step="1"
+                    title="Insira um valor entre 1 e 1000(inclusos)"
+                    value="<?php echo("");?>"
                   />
                 </fieldset>
 
@@ -154,8 +122,8 @@
                   <input 
                     type="submit" 
                     value="Resetar" 
-                    formaction="../../html-php/media/index.php" />
-                  <input type="submit" value="Calcular" formmethod="post" />
+                    formaction="" />
+                  <input type="submit" value="Gerar" formmethod="post" />
                 </div>
               </form>
             </div>
@@ -164,15 +132,12 @@
               <fieldset>
                 <legend>Resultado</legend>
                 <label for="result"></label>
-                <input
-                  type="number"
-                  name="result"
-                  id="result"
-                  placeholder=""
-                  readonly="readonly"
-                  value="<?php echo($result);?>"
-                  title="O resultado sairá aqui!"
-                />
+                <div class="mult-table">
+                  <?php 
+                  # Método para impressão da tabuada:
+                    
+                  ?>
+                </div>
               </fieldset>
             </div>
           </section>
