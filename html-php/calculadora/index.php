@@ -1,5 +1,5 @@
 <?php
-  require_once("../../php/media/calc-media.php");
+  require_once("../../php/calculadora/calculadora.php");
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +31,7 @@
       rel="stylesheet"
     />
 
-    <title>Média simples</title>
+    <title>Calculadora</title>
 
     <!-- Links CSS -->
     <link rel="stylesheet" href="../../style/home/basic-reset.css" />
@@ -42,10 +42,11 @@
     <link rel="stylesheet" href="../../style/home/main.css" />
     <link rel="stylesheet" href="../../style/home/sec-tool.css" />
     <link rel="stylesheet" href="../../style/home/footer.css" />
-    <link rel="stylesheet" href="../../style/media/sec-display.css" />
-    <link rel="stylesheet" href="../../style/media/header.css" />
-    <link rel="stylesheet" href="../../style/media/form-media.css" />
-    <link rel="stylesheet" href="../../style/media/output.css" />
+    <link rel="stylesheet" href="../../style/calculadora/sec-display.css" />
+    <link rel="stylesheet" href="../../style/calculadora/header.css" />
+    <link rel="stylesheet" href="../../style/calculadora/form-calc.css" />
+    <link rel="stylesheet" href="../../style/calculadora/output.css" />
+    <link rel="stylesheet" href="../../style/calculadora/error-msg.css" />
   </head>
   <body>
     <!-- Header do documento(página) -->
@@ -68,11 +69,9 @@
             <span class="ponta"></span>
             <ul class="list-opc">
               <li><a href="../../index.htm">Home</a></li>
-              <li>
-                <a href="../../html-php/calculadora/index.php">Calculadora</a>
-              </li>
-              <li><a href="./index.php">Média</a></li>
-              <li><a href="../../html-php/media/index.php">Tabuada</a></li>
+              <li><a href="./index.php">Calculadora</a></li>
+              <li><a href="../../html-php/media/index.php">Média</a></li>
+              <li><a href="../../html-php/tabuada/index.php">Tabuada</a></li>
               <li><a href="../../html-php/impar-par/index.php">Ímpar/Par</a></li>
             </ul>
           </div>
@@ -82,7 +81,7 @@
         <div class="tool-display">
           <section class="sec-display">
             <header class="sec-display-header">
-              <h2>Cálculo de Média Simples</h2>
+              <h2>Cálculadora SUPER Simples</h2>
             </header>
 
             <div class="form-media">
@@ -92,88 +91,112 @@
                 id="form-media"
                 autocomplete="on"
               >
-                <fieldset id="fieldset-nota-1">
-                  <legend>Nota 1</legend>
-                  <label for="grade1"></label>
+                <fieldset id="fieldset-num-1">
+                  <legend>Número 1</legend>
+                  <label for="num1"></label>
                   <input
                     type="number"
-                    name="grade1"
-                    id="grade1"
+                    name="num1"
+                    id="num1"
                     required="required"
-                    placeholder="Insira a nota 1"
-                    min="0"
-                    max="10"
-                    step="0.1"
-                    title="Insira um valor entre 0 e 10(inclusos)"
+                    placeholder="Insira o número 1"
+                    title="Insira um valor para cálculo"
                     value="<?php 
-                      if($_SERVER["REQUEST_METHOD"] == "POST")
-                      echo($arr_grades[0]);
+                      if($_SERVER["REQUEST_METHOD"] == "POST") {
+                        echo($numOne);
+                      } 
                     ?>"
                   />
                 </fieldset>
-                <fieldset id="fieldset-nota-2">
-                  <legend>Nota 2</legend>
-                  <label for="grade2"></label>
+                <?php
+                if($_SERVER["REQUEST_METHOD"] == "POST") 
+                  if ($numOne == 0) {
+                    errorAlert("Dividir por zero é um absurdo!");
+                  }
+                ?>
+                <fieldset id="fieldset-num-2">
+                  <legend>Número 2</legend>
+                  <label for="num2"></label>
                   <input
                     type="number"
-                    name="grade2"
-                    id="grade2"
+                    name="num2"
+                    id="num2"
                     required="required"
-                    placeholder="Insira a nota 2"
-                    min="0"
-                    max="10"
-                    step="0.1"
-                    title="Insira um valor entre 0 e 10(inclusos)"
+                    placeholder="Insira o número 2"
+                    title="Insira um valor para o cálculo"
                     value="<?php 
                       if($_SERVER["REQUEST_METHOD"] == "POST")
-                      echo($arr_grades[1]);
+                      echo($numTwo);
                     ?>"
                   />
                 </fieldset>
-                <fieldset id="fieldset-nota-3">
-                  <legend>Nota 3</legend>
-                  <label for="grade3"></label>
-                  <input
-                    type="number"
-                    name="grade3"
-                    id="grade3"
-                    required="required"
-                    placeholder="Insira a nota 3"
-                    min="0"
-                    max="10"
-                    step="0.1"
-                    title="Insira um valor entre 0 e 10(inclusos)"
-                    value="<?php 
-                      if($_SERVER["REQUEST_METHOD"] == "POST")
-                      echo($arr_grades[2]);
-                      ?>"
-                  />
-                </fieldset>
-                <fieldset id="fieldset-nota-4">
-                  <legend>Nota 4</legend>
-                  <label for="grade4"></label>
-                  <input
-                    type="number"
-                    name="grade4"
-                    id="grade4"
-                    required="required"
-                    placeholder="Insira a nota 4"
-                    min="0"
-                    max="10"
-                    step="0.1"
-                    title="Insira um valor entre 0 e 10(inclusos)"
-                    value="<?php 
-                      if($_SERVER["REQUEST_METHOD"] == "POST")
-                      echo($arr_grades[3]);
-                    ?>"
-                  />
+                <fieldset id="fieldset-radio">
+                  <legend>Operação</legend>
+                  <div class="opc-container">
+                    <input 
+                      type="radio" 
+                      name="operation" 
+                      id="sum" 
+                      value="sum"
+                      required="required"
+                      <?php 
+                        if (isset($options) and $options == "SUM") {
+                          echo("checked='checked'");
+                        }
+                      ?>
+                    >
+                    <label for="sum">Adição</label>
+                  </div>
+                  <div class="opc-container">
+                    <input 
+                      type="radio" 
+                      name="operation" 
+                      id="subtraction" 
+                      value="subtraction"
+                      <?php 
+                        if (isset($options) and $options == "SUBTRACTION") {
+                          echo("checked='checked'");
+                        }
+                      ?>
+                    >
+                    <label for="subtraction">Subtração</label>
+                  </div>
+                  <div class="opc-container">
+                    <input 
+                      type="radio" 
+                      name="operation" 
+                      id="multiplication"
+                      value="multiplication"
+                      <?php 
+                        if (isset($options) and $options == "MULTIPLICATION") {
+                          echo("checked='checked'");
+                        }
+                      ?>
+                    >
+                    <label for="multiplication">Multiplicação</label>
+                  </div>
+                  <div class="opc-container">
+                    <input 
+                      type="radio"
+                      name="operation" 
+                      id="division"
+                      value="division"
+                      <?php 
+                        if (isset($options) and $options == "DIVISION") {
+                          echo("checked='checked'");
+                        }
+                      ?>
+                    >
+                    <label for="division">Divisão</label>
+                  </div>
+
                 </fieldset>
 
                 <div class="btns">
                   <input 
                     type="submit" 
                     value="Resetar" 
-                    formaction="../../html-php/media/index.php"
+                    formaction="../../html-php/calculadora/index.php"
                     formnovalidate="formnovalidate"
                     />
                   <input type="submit" value="Calcular" formmethod="post" />

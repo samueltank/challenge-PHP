@@ -1,33 +1,35 @@
 <?php  declare(strict_types=1); // Torna o script mais rigoroso, retorna erro.
   
   # Declaração de variáveis:
-  $array_grades = array(0.0, 0.0, 0.0, 0.0);
-  $array_length = (int) 0;
-  $result       = (float) 0.0;
+  $arr_grades = [];
+  $result     = (float) 0.0;
 
-  function calcMedia(array $grades, int $arrayLength) : float {
-    # Variável à soma:
-    $sum = (int) 0;
+  function calcMedia(array $arr_grades) : float // retorna float
+  {
+    # Variáveis:
+    $grades = $arr_grades;
+    $sum    = (int) 0;
     
     # Calcula a soma de todos os itens do array:
-    for($i = 0; $i < $arrayLength; $i++) {
-      $sum += $grades[$i]; 
+    foreach($grades as $value) 
+    {
+      $sum += $value; 
     }
 
-    return ($sum / $arrayLength);
+    return ($sum / count($grades));
   }
 
-  if($_SERVER["REQUEST_METHOD"] == "POST") {
-    global $array_grades, $array_length;
+  if($_SERVER["REQUEST_METHOD"] == "POST") 
+  {
+    global $arr_grades;
 
-    $array_grades = array(
-      $array_grades[0] = $_POST["grade1"],
-      $array_grades[1] = $_POST["grade2"],
-      $array_grades[2] = $_POST["grade3"],
-      $array_grades[3] = $_POST["grade4"]
+    $arr_grades = array(
+      $arr_grades[0] = $_POST["grade1"],
+      $arr_grades[1] = $_POST["grade2"],
+      $arr_grades[2] = $_POST["grade3"],
+      $arr_grades[3] = $_POST["grade4"]
     );
-    $array_length = count($array_grades);
 
-    $result = round(calcMedia($array_grades, $array_length), 2);
+    $result = round(calcMedia($arr_grades), 2);
   } 
 ?>

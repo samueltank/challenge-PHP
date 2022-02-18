@@ -31,5 +31,4 @@ header.doc-header > .line {
 }
 header.doc-header:hover > .line {
   width: calc(55 * 1rem);
-  
 }

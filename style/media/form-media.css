@@ -62,7 +62,6 @@ input[type="submit"]:hover {
   color: green;
   font-weight: bold;
   border: 1px solid green;
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.356);
 }
 input[type="submit"]:active {
   transform: scale(0.95);

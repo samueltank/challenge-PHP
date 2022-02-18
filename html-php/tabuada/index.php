@@ -12,22 +12,26 @@
     <meta
       name="description"
       content="Plataforma de cálculo; realizada a pedido do professor Marcel 
-      para aperfeiçoamento do conhecimento da linguagem PHP"
+      para aperfeiçoamento do conhecimento na linguagem PHP"
     />
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <meta name="author" content="Samuel Tank" />
 
     <!-- Fonts google -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link 
+      rel="preconnect" 
+      href="https://fonts.gstatic.com" 
+      crossorigin="crossorigin" 
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,
-    300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&
-    display=swap"
+      300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&
+      display=swap"
       rel="stylesheet"
     />
 
-    <title>Home</title>
+    <title>Tabuada</title>
 
     <!-- Links CSS -->
     <link rel="stylesheet" href="../../style/home/basic-reset.css" />
@@ -64,10 +68,14 @@
             <span class="ponta"></span>
             <ul class="list-opc">
               <li><a href="../../index.htm">Home</a></li>
-              <li><a href="#">Calculadora</a></li>
-              <li><a href="../media/index.php">Média</a></li>
+              <li>
+                <a href="../../html-php/calculadora/index.php">Calculadora</a>
+              </li>
+              <li><a href="../../html-php/media/index.php">Média</a></li>
               <li><a href="./index.php">Tabuada</a></li>
-              <li><a href="#">Par/Ímpar</a></li>
+              <li>
+                <a href="../../html-php/impar-par/index.php">Ímpar/Par</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -84,6 +92,7 @@
                 action="<?php echo(htmlspecialchars($_SERVER["PHP_SELF"]));?>" 
                 enctype="multipart/form-data"
                 id="form-media"
+                autocomplete="on"
               >
                 <fieldset id="table-field">
                   <legend>Tabuada</legend>
@@ -98,7 +107,10 @@
                     max="1000"
                     step="1"
                     title="Insira um valor entre 1 e 1000(inclusos)"
-                    value="<?php echo($table);?>"
+                    value="<?php
+                      if($_SERVER["REQUEST_METHOD"] == "POST") 
+                      echo($table);
+                    ?>"
                   />
                 </fieldset>
                 <fieldset id="counter-field">
@@ -114,7 +126,10 @@
                     max="1000"
                     step="1"
                     title="Insira um valor entre 1 e 1000(inclusos)"
-                    value="<?php echo($counter);?>"
+                    value="<?php 
+                      if($_SERVER["REQUEST_METHOD"] == "POST")
+                      echo($counter);
+                    ?>"
                   />
                 </fieldset>
 
@@ -137,6 +152,7 @@
                 <div class="mult-table">
                   <?php 
                     # Método para impressão da tabuada:
+                    if($_SERVER["REQUEST_METHOD"] == "POST")
                     generateTable($table, $counter);
                   ?>
                 </div>

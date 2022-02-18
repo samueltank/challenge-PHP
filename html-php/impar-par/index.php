@@ -1,5 +1,6 @@
 <?php
-  /* require_once("./php/impar-par/calc-impar-par.php"); */
+  require_once("../../php/impar-par/listGenerate.php");
+  require_once("../../php/impar-par/calc-impar-par.php");
 ?>
 
 <!DOCTYPE html>
@@ -12,22 +13,26 @@
     <meta
       name="description"
       content="Plataforma de cálculo; realizada a pedido do professor Marcel 
-      para aperfeiçoamento do conhecimento da linguagem PHP"
+      para aperfeiçoamento do conhecimento na linguagem PHP"
     />
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <meta name="author" content="Samuel Tank" />
 
     <!-- Fonts google -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link 
+      rel="preconnect" 
+      href="https://fonts.gstatic.com" 
+      crossorigin="crossorigin" 
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,
-    300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&
-    display=swap"
+      300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&
+      display=swap"
       rel="stylesheet"
     />
 
-    <title>Home</title>
+    <title>Impar & Par</title>
 
     <!-- Links CSS -->
     <link rel="stylesheet" href="../../style/home/basic-reset.css" />
@@ -42,6 +47,7 @@
     <link rel="stylesheet" href="../../style/impar-par/header.css" />
     <link rel="stylesheet" href="../../style/impar-par/form-table.css" />
     <link rel="stylesheet" href="../../style/impar-par/output.css" />
+    <link rel="stylesheet" href="../../style/impar-par/error-msg.css" />
   </head>
   <body>
     <!-- Header do documento(página) -->
@@ -64,10 +70,12 @@
             <span class="ponta"></span>
             <ul class="list-opc">
               <li><a href="../../index.htm">Home</a></li>
-              <li><a href="#">Calculadora</a></li>
-              <li><a href="../media/index.php">Média</a></li>
-              <li><a href="../tabuada/index.php">Tabuada</a></li>
-              <li><a href="#">Par/Ímpar</a></li>
+              <li>
+                <a href="../../html-php//calculadora/index.php">Calculadora</a>
+              </li>
+              <li><a href="../../html-php/media/index.php">Média</a></li>
+              <li><a href="../../html-php/tabuada/index.php">Tabuada</a></li>
+              <li><a href="./index.php">Ímpar/Par</a></li>
             </ul>
           </div>
         </div>
@@ -84,38 +92,62 @@
                 action="<?php echo(htmlspecialchars($_SERVER["PHP_SELF"]));?>" 
                 enctype="multipart/form-data"
                 id="form-media"
+                autocomplete="on"
               >
                 <fieldset id="initial-num-field">
                   <legend>Nº inicial</legend>
-                  <label for="initial-num"></label>
-                  <input
-                    type="number"
-                    name="initial-num"
-                    id="initial-num"
-                    required="required"
-                    placeholder="Insira a número inicial"
-                    min="0"
-                    max="1000"
-                    step="1"
-                    title="Insira um valor entre 0 e 1000(inclusos)"
-                    value="<?php echo('');?>"
-                  />
+                  <label for="initial"></label>
+                  <select 
+                    name="initial" 
+                    id="initial"
+                  >
+                    <option 
+                      value="-1"  
+                      selected="selected"
+                    >Escolha uma opção</option>
+                    <?php 
+                      # Cria opções da lista suspensa:
+                      echo(startIntervalGenerator(0, 500));
+                    ?>
+                  </select>
+                  <?php 
+                    if($_SERVER["REQUEST_METHOD"] == "POST") {
+                      if ($start == (-1)) {
+                        echo(errorAlert("Escolha um número"));
+                      }
+                      if (!checkVia($start, $end)) {
+                        echo(errorAlert("Número inicial maior que o final"));
+                      }
+                      if (!checkNotEquals($start, $end) and ($start != (-1))) {
+                        echo(errorAlert("Números iguais!"));
+                      }
+                    }
+                  ?>
                 </fieldset>
                 <fieldset id="final-num-field">
                   <legend>Nº Final</legend>
-                  <label for="final-num"></label>
-                  <input
-                    type="number"
-                    name="final-num"
-                    id="final-num"
-                    required="required"
-                    placeholder="Insira o número final"
-                    min=""
-                    max="1000"
-                    step="1"
-                    title="Insira um valor entre 1 e 1000(inclusos)"
-                    value="<?php echo('');?>"
-                  />
+                  <label for="final"></label>
+                  <select 
+                    name="final" 
+                    id="final"
+                  >
+                    <option 
+                      value="-1"
+                      selected="selected" 
+                    >Escolha uma opção</option>
+                    <?php 
+                      # Cria opções da lista susptensa:
+                      echo(startIntervalGenerator(100, 1000));
+                    ?>
+                  </select>
+                  <?php
+                    # Alerto sobre erro de caixa vazia:
+                    if($_SERVER["REQUEST_METHOD"] == "POST") {
+                      if($end == (-1)) {
+                        echo(errorAlert("Escolha um número"));
+                      }
+                    }
+                  ?>
                 </fieldset>
 
                 <div class="btns">
@@ -136,12 +168,38 @@
                 <label for="result"></label>
                   <fieldset id="field-odd">
                     <legend>Ímpares</legend>
-                    <div class="odd-ones"></div>
+                    <div class="odd-ones">
+                      <?php 
+                        # Listar o array de Ímpares
+                        if($_SERVER["REQUEST_METHOD"] == "POST") 
+                        displayOddList();
+                      ?>
+                    </div>
                   </fieldset>
+                  <div class="total">
+                    <?php 
+                      if ($_SERVER["REQUEST_METHOD"] == "POST")
+                      if (!empty($arr_odd))
+                      echo("Total de Ímpares: ".count($arr_odd));
+                    ?>
+                  </div>
                   <fieldset id="field-pairs">
                     <legend>Pares</legend>
-                    <div class="pairs"></div>
+                    <div class="pairs">
+                      <?php 
+                        # Listar o array de Pares
+                        if($_SERVER["REQUEST_METHOD"] == "POST")
+                        displayEvenList()
+                      ?>
+                    </div>
                   </fieldset>
+                  <div class="total">
+                  <?php 
+                    if ($_SERVER["REQUEST_METHOD"] == "POST")
+                    if (!empty($arr_even))
+                    echo("Total de pares: ".count($arr_even));
+                  ?>
+                  </div>
               </fieldset>
             </div>
           </section>

@@ -65,11 +65,15 @@
   font-size: clamp(0.8rem, 1.6rem, 2rem);
   background-color: var(--var-background-menu-item);
   color: blueviolet;
-  transition: all 0.1s ease-in-out;
+  transition: all 0.2s ease;
 }
 .list > ul > li > a:hover {
   font-weight: bold;
   text-transform: uppercase;
   text-shadow: 0px 4px 0 rgba(0, 0, 0, 0.267);
-  text-decoration: line-through;
+  text-decoration: none;
+  color: white;
+  background-color: #FA58B6;
+  border-radius: 1rem;
+  transform: scale(1.2);
 }

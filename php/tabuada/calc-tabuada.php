@@ -12,7 +12,7 @@
 
     for($count = (int) 0; $count <= $counter; $count++) {
       $result = ($count * $table);
-      echo("$counter x $count = $result <br /> ");
+      echo("$table x $count = $result <br /> ");
     }
   }
 

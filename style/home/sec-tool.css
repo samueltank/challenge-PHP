@@ -1,8 +1,10 @@
-section.sec-tool {
+section.sec-tool 
+{
   width: 80%;
   min-height: 75vh;
   padding: 2rem;
-  background-color: rgba(196, 196, 196, 0.507);
+  background: linear-gradient(45deg, #1A1A40, #270082, #7A0BC0, #FA58B6);
+  background-size: 150% 150%;
   border-radius: 1rem;
   box-shadow: 0 0 10px rgba(128, 128, 128, 0.308);
   transition: all 0.4s ease-out;
@@ -10,40 +12,73 @@ section.sec-tool {
   justify-content: space-around;
   align-items: center;
   gap: 0.5rem;
+  animation: aniBackground 10s ease-in-out infinite;
 }
-section.sec-tool:hover {
+section.sec-tool:hover 
+{
   box-shadow: none;
   transform: scale(1.02);
 }
-section.sec-tool .container-menu {
+section.sec-tool .container-menu 
+{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 0.5rem;
   background-color: var(--var-blue);
+  border-radius: 1rem;
   height: 10vh;
   width: 15vw;
   transition: all 0.3s ease-out;
+  opacity: 0.3;
   cursor: pointer;
+  transition: all 0.2s linear;
 }
-section.sec-tool .container-menu:hover {
-  background-color: var(--var-blue-hover);
+section.sec-tool .container-menu:hover 
+{
+  opacity: 1;
 }
-section.sec-tool .container-menu:active {
-  transform: scale(0.98);
+section.sec-tool .container-menu:active 
+{
+  transform: scale(0.75);
 }
-section.sec-tool > .tool-display {
+section.sec-tool > .tool-display 
+{
   background-color: var(--var-background-color);
   height: 70vh;
   width: 60vw;
 }
- 
-section.sec-tool > .container-list-menu {
+section.sec-tool > .container-list-menu 
+{
   width: 20vw;
   height: 70vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+}
+
+@keyframes aniBackground 
+{
+  0% 
+  {
+    background-position: 0% 50%;
+  }
+  25% 
+  {
+    background-position: 50% 50%;
+  }
+  50% 
+  {
+    background-position: 100% 50%;
+  }
+  75% 
+  {
+    background-position: 50% 50%;
+  }
+  100% 
+  {
+    background-position: 0% 50%;
+  }
 }
