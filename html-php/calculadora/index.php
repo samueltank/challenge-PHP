@@ -108,12 +108,6 @@
                     ?>"
                   />
                 </fieldset>
-                <?php
-                if($_SERVER["REQUEST_METHOD"] == "POST") 
-                  if ($numOne == 0) {
-                    errorAlert("Dividir por zero é um absurdo!");
-                  }
-                ?>
                 <fieldset id="fieldset-num-2">
                   <legend>Número 2</legend>
                   <label for="num2"></label>
@@ -130,6 +124,12 @@
                     ?>"
                   />
                 </fieldset>
+                <?php
+                if($_SERVER["REQUEST_METHOD"] == "POST") 
+                  if ($numTwo == 0) {
+                    errorAlert("Dividir por zero é um absurdo!");
+                  }
+                ?>
                 <fieldset id="fieldset-radio">
                   <legend>Operação</legend>
                   <div class="opc-container">

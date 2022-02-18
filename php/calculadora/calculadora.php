@@ -45,7 +45,7 @@
     echo("<span class='error'>* ${msg}</span>");
   }
 
-  if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["num1"] != 0) {
+  if(($_SERVER["REQUEST_METHOD"] == "POST") and ($_POST["num2"] != 0)) {
     global $options;
     $numOne  = $_POST["num1"];
     $numTwo  = $_POST["num2"];
