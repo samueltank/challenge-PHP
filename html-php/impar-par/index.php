@@ -71,7 +71,7 @@
             <ul class="list-opc">
               <li><a href="../../index.htm">Home</a></li>
               <li>
-                <a href="../../html-php//calculadora/index.php">Calculadora</a>
+                <a href="../../html-php/calculadora/index.php">Calculadora</a>
               </li>
               <li><a href="../../html-php/media/index.php">Média</a></li>
               <li><a href="../../html-php/tabuada/index.php">Tabuada</a></li>

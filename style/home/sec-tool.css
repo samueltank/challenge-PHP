@@ -1,3 +1,7 @@
+section {
+  font-family: 'Open Sans', sans-serif;
+}
+
 section.sec-tool 
 {
   width: 80%;
@@ -48,6 +52,22 @@ section.sec-tool > .tool-display
   background-color: var(--var-background-color);
   height: 70vh;
   width: 60vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  
+}
+.ul-style > li {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+section.sec-tool > .tool-display > h3 {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  font-family: 'Open Sans', sans-serif;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 0 dodgerblue, -1px -1px 0 #FA58B6;
 }
 section.sec-tool > .container-list-menu 
 {
@@ -57,6 +77,16 @@ section.sec-tool > .container-list-menu
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+}
+
+section.sec-tool > .tool-display > h4 {
+  font-size: 1.8rem;
+  color: black;
+  text-shadow: 2px 2px 0 #FA58B6, -1px -1px 0 dodgerblue  ;
+}
+
+section.sec-tool > .tool-display p {
+  font-size: 1.5rem;
 }
 
 @keyframes aniBackground 

@@ -72,7 +72,7 @@
                 <a href="../../html-php/calculadora/index.php">Calculadora</a>
               </li>
               <li><a href="./index.php">Média</a></li>
-              <li><a href="../../html-php/media/index.php">Tabuada</a></li>
+              <li><a href="../../html-php/tabuada/index.php">Tabuada</a></li>
               <li><a href="../../html-php/impar-par/index.php">Ímpar/Par</a></li>
             </ul>
           </div>
