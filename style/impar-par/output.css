@@ -16,7 +16,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding: 1rem 0 1rem 0;
   font-family: 'Open Sans', sans-serif;
   font-size: 1.5rem;
@@ -76,7 +76,7 @@
   padding: 1rem;
   font-size: 1.3rem;
   background-color: white;
-  overflow-y: scroll;
+  overflow-y: auto;
   transition: transform 0.3s ease;
 }
 .odd-ones:hover {
@@ -101,7 +101,7 @@
   font-size: 1.3rem;
   padding: 1rem;
   background-color: white;
-  overflow-y: scroll;
+  overflow-y: auto;
   transition: transform 0.3s ease;
 }
 .pairs:hover {
